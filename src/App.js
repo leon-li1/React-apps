@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import Comment from "./comment.js";
+import Comment from "./Comment.js";
+import DeleteCommentBtn from "./DeleteCommentBtn.js";
 
 function App() {
   const [state, setState] = useState(0);
@@ -22,7 +23,10 @@ function App() {
       });
     setUsers(users);
   };
-
+  // const handleDelete = () => {
+  //   setState(state - 1);
+  //   users.filter()
+  // }
   return (
     <div>
       <button className="btn btn-secondary btn-sml" onClick={reset}>
@@ -32,7 +36,10 @@ function App() {
         Add Comment
       </button>
       {users.map((user) => (
-        <Comment name={user.name} message={user.message} />
+        <div>
+          <DeleteCommentBtn />
+          <Comment key={state} name={user.name} message={user.message} />
+        </div>
       ))}
     </div>
   );
