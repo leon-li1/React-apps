@@ -17,16 +17,20 @@ function App() {
     else if (state === 2) users.push({ name: "Carl", message: "test3" });
     else
       users.push({
-        name: "test_name" + { state },
-        message: "test" + { state },
+        name: "test_name" + (state + 1),
+        message: "test" + (state + 1),
       });
     setUsers(users);
   };
 
   return (
     <div>
-      <button onClick={reset}>Reset</button>
-      <button onClick={addUser}>Add Comment</button>
+      <button className="btn btn-secondary btn-sml" onClick={reset}>
+        Reset
+      </button>
+      <button className="btn btn-secondary btn-sml" onClick={addUser}>
+        Add Comment
+      </button>
       {users.map((user) => (
         <Comment name={user.name} message={user.message} />
       ))}
