@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import Comment from "./Comment.js";
-import DeleteCommentBtn from "./DeleteCommentBtn.js";
 
 function App() {
   const [state, setState] = useState(0);
@@ -28,9 +27,11 @@ function App() {
 
   const handleDelete = (target) => {
     setState((prevState) => prevState - 1);
-    users.filter((user) => {
-      return user.id !== target;
-    });
+    setUsers(
+      users.filter((user) => {
+        return user.id !== target;
+      })
+    );
   };
 
   return (
@@ -42,10 +43,11 @@ function App() {
         Add Comment
       </button>
       {users.map((user) => (
-        <div key={user.id}>
-          <DeleteCommentBtn />
-          <Comment name={user.name} message={user.message} />
-        </div>
+        <Comment
+          name={user.name}
+          message={user.message}
+          handleDelete={() => handleDelete(user.id)}
+        />
       ))}
     </div>
   );
