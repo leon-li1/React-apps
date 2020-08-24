@@ -11,22 +11,28 @@ function App() {
     setState(0);
     setUsers([]);
   };
+
   const addUser = () => {
-    setState(state + 1);
-    if (state === 0) users.push({ name: "Abby", message: "test" });
-    else if (state === 1) users.push({ name: "Bob", message: "test2" });
-    else if (state === 2) users.push({ name: "Carl", message: "test3" });
+    setState((prevState) => prevState + 1);
+    if (state === 0) users.push({ id: 1, name: "Abby", message: "test" });
+    else if (state === 1) users.push({ id: 2, name: "Bob", message: "test2" });
+    else if (state === 2) users.push({ id: 3, name: "Carl", message: "test3" });
     else
       users.push({
+        id: state + 1,
         name: "test_name" + (state + 1),
         message: "test" + (state + 1),
       });
     setUsers(users);
   };
-  // const handleDelete = () => {
-  //   setState(state - 1);
-  //   users.filter()
-  // }
+
+  const handleDelete = (target) => {
+    setState((prevState) => prevState - 1);
+    users.filter((user) => {
+      return user.id !== target;
+    });
+  };
+
   return (
     <div>
       <button className="btn btn-secondary btn-sml" onClick={reset}>
@@ -36,9 +42,9 @@ function App() {
         Add Comment
       </button>
       {users.map((user) => (
-        <div>
+        <div key={user.id}>
           <DeleteCommentBtn />
-          <Comment key={state} name={user.name} message={user.message} />
+          <Comment name={user.name} message={user.message} />
         </div>
       ))}
     </div>
