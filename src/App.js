@@ -35,6 +35,15 @@ function App() {
       <button className="btn btn-secondary btn-sml" onClick={addUser}>
         Add Comment
       </button>
+      <button
+        className="btn btn-secondary btn-sml"
+        onClick={() => {
+          setCount(0);
+          setUsers([]);
+        }}
+      >
+        Hard reset
+      </button>
       {users.map((user) => (
         <Comment
           name={user.name}
