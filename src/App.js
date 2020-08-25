@@ -4,23 +4,19 @@ import Comment from "./Comment";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
   const inputBox = useRef();
 
-  const addUser = () => {
+  const addItem = () => {
     const name = inputBox.current.value;
     if (name === "") return;
     setCount((prevCount) => prevCount + 1);
-    setUsers([...users, { id: count, name: name }]);
+    setItems([...items, { id: count, name: name }]);
     inputBox.current.value = null;
   };
 
   const handleDelete = (target) => {
-    setUsers(
-      users.filter((user) => {
-        return user.id !== target;
-      })
-    );
+    setItems(items.filter((user) => user.id !== target));
   };
 
   return (
@@ -31,19 +27,22 @@ function App() {
         type="text"
         style={{ border: "1px solid black" }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") addUser();
+          if (e.key === "Enter") addItem();
         }}
       />
-      <button className="btn btn-secondary btn-sml" onClick={addUser}>
+      <button className="btn btn-secondary btn-sml" onClick={addItem}>
         Add Comment
       </button>
       <button
         className="btn btn-secondary btn-sml"
-        onClick={() => setUsers([])}
+        onClick={() => setItems([])}
       >
         Reset
       </button>
-      {users.map((user) => (
+      <span className="btn badge-primary" style={{ height: 35 }}>
+        Items: {" " + items.length}
+      </span>
+      {items.map((user) => (
         <Comment
           key={user.id}
           name={user.name}
