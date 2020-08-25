@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function Comment({ name, handleDelete }) {
   const [count, setCount] = useState(1);
-  let disabledClass = count === 1 ? " disabled" : "";
+  //let disabledClass = count === 1 ? " disabled" : "";
 
   return (
     <div
@@ -16,12 +16,15 @@ function Comment({ name, handleDelete }) {
     >
       <h3>{name}</h3>
       <button
-        className={"btn btn-m" + disabledClass}
+        className="btn btn-m"
         style={{
           fontSize: 20,
           fontWeight: "bold",
         }}
-        onClick={() => setCount((prevCount) => prevCount - 1)}
+        onClick={() => {
+          setCount((prevCount) => prevCount - 1);
+          if (count === 1) handleDelete();
+        }}
       >
         -
       </button>
