@@ -1,6 +1,6 @@
 import React from "react";
 
-function Comment({ name, message, handleDelete }) {
+function Comment({ name, handleDelete }) {
   return (
     <div
       style={{
@@ -11,7 +11,6 @@ function Comment({ name, message, handleDelete }) {
       }}
     >
       <h3>{name}</h3>
-      <p>{message}</p>
       <button className="btn btn-danger m-2 btn-xs" onClick={handleDelete}>
         X
       </button>
