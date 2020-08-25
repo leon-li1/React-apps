@@ -46,6 +46,7 @@ function App() {
       </button>
       {users.map((user) => (
         <Comment
+          key={user.id}
           name={user.name}
           message={user.message}
           handleDelete={() => handleDelete(user.id)}
